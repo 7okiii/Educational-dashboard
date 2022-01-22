@@ -28,6 +28,12 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("register_yuya")?>">Register for Admin page</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("maxmin")?>">Max and Min　for Admin page</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("teachers")?>">Mark for Teachers page</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("students")?>">Check grade for Student page</a>
+
+                    
+
                 </div>
             </div>
             <!-- Page content wrapper-->
