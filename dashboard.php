@@ -1,3 +1,6 @@
+<?php
+    include "./config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,6 +10,9 @@
         <meta name="author" content="" />
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
         <link rel="stylesheet" href="./stylesheet/test.css">
+        <link rel="stylesheet" href="./stylesheet/register_yuya.css">
+        <script src="./js/jquery.js"></script>
+
         <title>Dashboard</title>
     </head>
     <body>
@@ -21,6 +27,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("register_yuya")?>">Register for Admin page</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -48,16 +55,16 @@
                     </div>
                 </nav>
                 <!-- Page content-->
-                <div class="container-fluid">
-                    <h1 class="mt-4">Simple Sidebar</h1>
-                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                    <p>
-                        Make sure to keep all page content within the
-                        <code>#page-content-wrapper</code>
-                        . The top navbar is optional, and just for demonstration. Just create an element with the
-                        <code>#sidebarToggle</code>
-                        ID which will toggle the menu when clicked.
-                    </p>
+                <div>
+                    <h1>Contents</h1>
+                    <div>
+                        <?php
+                            if(isset($_GET["add"])){
+                                include "pages/".$_GET["add"].".php";
+
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

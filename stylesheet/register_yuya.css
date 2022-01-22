@@ -70,13 +70,14 @@
 }
 
 #admin_dash #registe_form > div:last-child > div > div > div {
-  margin: 10px 0;
+  margin: 30px 0;
 }
 
 #admin_dash #registe_form > div:last-child > div > div > div input, #admin_dash #registe_form > div:last-child > div > div > div select {
   font-size: 16px;
   border: none;
   outline: none;
+  margin-top: 20px;
 }
 
 #admin_dash #registe_form > div:last-child > div > div:last-child {
