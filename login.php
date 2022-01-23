@@ -18,14 +18,14 @@
 <body>
     
 <header>
-    <div class="main-header">
+    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>" class="main-header">
         <h1>Login</h1>
         <hr />
         <h3>Welcome to Education </h3>
-        <p><input type="text" placeholder="UserId"></p>
-        <p><input type="password" placeholder="Password"></p>
+        <p><input type="text" placeholder="UserId" name="userId"></p>
+        <p><input type="password" placeholder="Password" name="pass"></p>
         <p><button>Continue</button></p>
-    </div>
+    </form>
 </header>
     
 <?php
