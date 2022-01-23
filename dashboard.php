@@ -10,7 +10,7 @@
         <meta name="author" content="" />
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
         <link rel="stylesheet" href="./stylesheet/test.css">
-        <link rel="stylesheet" href="./stylesheet/register_yuya.css">
+        <!-- <link rel="stylesheet" href="./stylesheet/register_yuya.css"> -->
         <script src="./js/jquery.js"></script>
 
         <title>Dashboard</title>
