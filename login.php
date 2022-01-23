@@ -16,13 +16,18 @@
     <title>Login page</title>
 </head>
 <body>
-    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>" enctype="multipart/form-data">
-        <label for="userId">User ID</label>
-        <input type="text" name="userId" required>
-        <label for="pass">Password</label>
-        <input type="password" name="pass" required>
-        <button type="submit">Login</button>
-    </form>  
+    
+<header>
+    <div class="main-header">
+        <h1>Login</h1>
+        <hr />
+        <h3>Welcome to Education </h3>
+        <p><input type="text" placeholder="UserId>"></p>
+        <p><input type="password" placeholder="Password"></p>
+        <p><button>Continue</button></p>
+    </div>
+</header>
+    
 <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //
