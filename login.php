@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./stylesheet/reset.css">
+    <!-- <link rel="stylesheet" href="./stylesheet/reset.css"> -->
     <style>
         <?php
             include('./stylesheet/login.css');
@@ -22,7 +22,7 @@
         <h1>Login</h1>
         <hr />
         <h3>Welcome to Education </h3>
-        <p><input type="text" placeholder="UserId>"></p>
+        <p><input type="text" placeholder="UserId"></p>
         <p><input type="password" placeholder="Password"></p>
         <p><button>Continue</button></p>
     </div>
