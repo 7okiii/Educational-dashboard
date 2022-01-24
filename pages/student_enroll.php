@@ -16,7 +16,6 @@
                 echo "<tr><td>".$row["course_id"]."</td><td>".$row["course_name"]."</td><td>".$row["price"]."</td></tr>";
             }
         }
-
         $con->close();
     ?>
     </table>
