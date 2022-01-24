@@ -59,16 +59,20 @@
     <h3>Create new course</h3><br>
     <form style="width:400px;" method="POST" action="<?php echo $_SERVER['PHP_SELF']."?add=edit_course_admin"?>">
         <div>
+            <label for="courseid">Course ID:</label>
+            <input type="number" name="courseid" required>
+        </div><br>
+        <div>
             <label for="coursename">Course Name:</label>
             <input type="text" name="coursename" required>
         </div><br>
         <div>
             <label for="min">Minimum Number:</label>
-            <input type="number" name="min" required>
+            <input type="number" name="min" required min=0>
         </div><br>
         <div>
             <label for="max">Maximum Number:</label>
-            <input type="number" name="max" required>
+            <input type="number" name="max" required min=0>
         </div><br>
         <div>
             <label for="teacherid">Teacher ID:</label>
@@ -92,7 +96,7 @@
         </div><br>
         <div>
             <label for="price">Price:</label>
-            <input type="text" name="price" required>
+            <input type="number" name="price" required>
         </div><br>
         <div style="text-align: center;">
             <button type="submit"
@@ -112,9 +116,17 @@
         if($con->connect_error){
             die("Connection failed");
         }
-        $insert="INSERT INTO course_tb (course_name,min_cap,max_cap,teacher_id,price) VALUES ('".$_POST["coursename"]."','".$_POST["min"]."','".$_POST["max"]."','".$_POST["teacherid"]."','".$_POST["price"]."')";
-        $result=$con->query($insert);
-        echo "<p>".$_POST["coursename"]." is set</P>";
+
+        $select="SELECT course_id  FROM course_tb WHERE course_id ='".$_POST["courseid"]."'";
+        $result=$con->query($select);
+        if($result->num_rows>0){
+            echo "Already exist";
+        }
+        else{
+            $insert="INSERT INTO course_tb (course_id,course_name,min_cap,max_cap,teacher_id,price) VALUES ('".$_POST["courseid"]."','".$_POST["coursename"]."','".$_POST["min"]."','".$_POST["max"]."','".$_POST["teacherid"]."','".$_POST["price"]."')";
+            $result=$con->query($insert);
+            echo "<p style='text-align:center; color:red;'>Class: ".$_POST["coursename"]." is set Please refresh</P>";
+        }
         $con->close();
     }
 ?>
