@@ -1,10 +1,23 @@
 <?php
     include "./config.php";
     session_start();
-    if(isset($_GET["add"]) && $_GET["add"]=="logout"){
-        header("location:login.php");
-        exit();
+    if($_SERVER["REQUEST_METHOD"]="GET"){
+        if(!isset($_SESSION["userid"])){
+            $_SESSION["logout"]=1;
+            header("location:login.php");
+            exit();
+        }
+
+        if(isset($_GET["add"])){
+            if($_GET["add"]=="logout"){
+                $_SESSION["logout"]=1;
+                header("location:login.php");
+                exit();
+            }
+           
+        }
     }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

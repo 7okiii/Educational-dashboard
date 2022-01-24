@@ -1,6 +1,19 @@
 <?php
     include('config.php');
     session_start();
+
+    if($_SERVER["REQUEST_METHOD"]=="GET"){
+        if(isset($_SESSION["userid"])){
+            if(isset($_SESSION["logout"])){
+                echo "loggedout";
+                session_unset();
+                session_destroy();
+            }
+            else{
+                 header("location:dashboard2.php");
+            }   
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,9 +87,7 @@
             }
         }
     }
-    if($_SERVER["REQUEST_METHOD"]=="GET"){
-        
-    }
+   
 ?>
 </body>
 </html>
