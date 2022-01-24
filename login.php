@@ -58,16 +58,16 @@
                         echo $row['fname']." is logged in";
                     }
                     $_SESSION["userid"]=$userid;
-                    header("Location: dashboard.php");
+                    header("Location: dashboard2.php");
                     exit();
                 }
                 $userType = $row['user_type'];
                 if ($userType == 'admin') {
-                    echo "admin";
+                    $_SESSION['name'] = 0;
                 } elseif ($userType == 'teacher') {
-                    echo "teacher";
+                    $_SESSION['name'] = 1;
                 } else {
-                    echo "student";
+                    $_SESSION['name'] = 2;
                 }
 
             } else {
