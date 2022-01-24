@@ -1,5 +1,5 @@
     <div id="admin_dash"> <!-- bgcolor-->
-        <form method="POST" id="registe_form" action="<?php echo $_SERVER["PHP_SELF"]."?add=register_yuya"?>" enctype="multipart/form-data">
+        <form method="POST" id="registe_form" action="<?php echo $_SERVER["PHP_SELF"]."?add=register_admin"?>" enctype="multipart/form-data">
             <div id="contentpage" class><!--Form content-->
                 <div id="fistpage" class="regi_pages"> <!--first page-->  
                     <h3>General Information</h3>

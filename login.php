@@ -47,18 +47,19 @@
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $salt = $row['salt'];
-                }    
+                }       
                 $tmpPass = md5($pass.$salt);
                 echo $tmpPass;// working
                 $select_cmd = "SELECT * FROM users_tb WHERE user_id='".$user_id."' AND password='".$tmpPass."'";
                 $result = $dbCon->query($select_cmd);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        // $_SESSION['userId'] = $row['user_id'];
+                        $userid=$row["user_id"];
                         echo $row['fname']." is logged in";
-                        header("Location: dashboard.php");
-                        exit();
                     }
+                    $_SESSION["userid"]=$userid;
+                    header("Location: dashboard.php");
+                    exit();
                 }
                 $userType = $row['user_type'];
                 if ($userType == 'admin') {

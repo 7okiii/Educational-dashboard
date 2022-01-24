@@ -25,9 +25,10 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("register_admin")?>">Register for Admin page</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("edit_admin")?>">Edit user info for Admin page</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("edit_course_admin")?>">Edit course info for Admin page</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("maxmin")?>">Max and Min for Admin page</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("teachers")?>">Mark for Teachers page</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("students")?>">Check grade for Student page</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("student_enroll")?>">Enroll for student</a>
+
 
                     
 
