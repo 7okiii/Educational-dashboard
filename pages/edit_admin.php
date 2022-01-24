@@ -5,11 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        <?php
-            include('./stylesheet/edit_admin.css');
-        ?>
-    </style>
 </head>
 <body>
     <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]."?add=edit_admin"?>">

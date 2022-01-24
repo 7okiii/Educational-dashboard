@@ -60,7 +60,7 @@
           if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['chose']) {
             try {
               $dbConn = connect_to_database();
-              $select_cmd = "SELECT * FROM marks_tb INNER JOIN users_tb ON users_tb.user_id = marks_tb.student_id WHERE marks_tb.student_id =".$_POST['stuId']." AND marks_tb.course_id =".$_POST['course'];
+              $select_cmd = "SELECT * FROM course_tb INNER JOIN users_tb ON users_tb.user_id = marks_tb.student_id WHERE marks_tb.student_id =".$_POST['stuId']." AND marks_tb.course_id =".$_POST['course'];
               $result = $dbConn->query($select_cmd);
               if ($dbConn->connect_error) {
                 throw new Exception('Connection error');
@@ -68,7 +68,7 @@
                 if ($result->num_rows > 0) {
                   while ($row = $result->fetch_assoc()) {
                     echo "<tr><th>Student Name</th><th>Student ID</th><th>Course ID</th><th>Marks</th><th>Comment</th></tr>";
-                    echo "<tr style='text-align:center;'><td><input value='".$row['student_id']."' name='stu_id'></td><td><input value='".$row['fname']."_".$row['lname']."'></td><td><input value='".$row['mark']."' name='mark'></td><td><textarea name='comment'>".$row['comment']."</textarea></td></tr>";
+                    echo "<tr style='text-align:center;'><td><input value='".$row['student_id']."' name='stu_id'></td><td><input value='".$row['teacher_id']."'></td><td><input value='".$row['course_id']."' name='course_id'></td><input value='".$row['mark']."' name='mark'><td><textarea name='comment'>".$row['comment']."</textarea></td></tr>";
                     // echo "</table>";
                   }
                 } else {

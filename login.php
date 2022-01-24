@@ -72,6 +72,7 @@
                         $userType = $row['user_type'];
                     }
                     $_SESSION["userid"]=$userid;
+<<<<<<< HEAD
                     if ($userType == 'admin') {
                         echo "admin";
                     } elseif ($userType == 'teacher') {
@@ -82,6 +83,20 @@
                     header("Location: dashboard2.php");
                     exit();
                 }
+=======
+                    header("Location: dashboard2.php");
+                    exit();
+                }
+                $userType = $row['user_type'];
+                if ($userType == 'admin') {
+                    $_SESSION['name'] = 0;
+                } elseif ($userType == 'teacher') {
+                    $_SESSION['name'] = 1;
+                } else {
+                    $_SESSION['name'] = 2;
+                }
+
+>>>>>>> f5ff155ecf31596558792ba9410e6bed5238807c
             } else {
                 echo "<p style='color:red;'>User ID or password is wrong</p>";
             }
