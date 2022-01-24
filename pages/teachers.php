@@ -10,7 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * {
+    /* * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -33,45 +33,41 @@
       width: 100%;
       height: 100%;
       text-align: center;
-    }
+    } */
   </style>
   <title>Teachers</title>
 </head>
 <body>
   <h3>Mark page</h3>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']."?add=teachers"?>">
+      <input type="submit" value="See all the students" name="show"></input><br>
       <label for="stuId">Student ID:</label><br>
       <input type="text" id="course" name="stuId"><br>
       <label for="fname">Course ID</label><br>
       <input type="text" name="course"><br>
-      <input type="submit" value="chose" name="chose"></input>
+      <input type="submit" value="Chose the selected student" name="chose"></input><br>
+      <!-- <input type="submit" value="See all the students" name="show"></input> -->
     </form>
     <table style="width:100%">
       <tr>
         <th>Student ID</th>
-        <th>Student First Name</th>
+        <th>Student Name</th>
         <th>Marks</th>
         <th>Comments</th>
       </tr>
       <form method="POST" action="<?php echo $_SERVER['PHP_SELF']."?add=teachers"?>">
         <?php
-          // ★ couldn't connect to mark_tb so tried to make with another database and change the code later
-          // this is just showing data in the table. ★ will add a function to edit the score and comment
           if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['chose']) {
             try {
               $dbConn = connect_to_database();
-              // $select_cmd = "SELECT * FROM marks_tb WHERE student_id ='".$_POST['stuId']."AND course_id =".$_POST['course']."'";
               $select_cmd = "SELECT * FROM marks_tb INNER JOIN users_tb ON users_tb.user_id = marks_tb.student_id WHERE marks_tb.student_id =".$_POST['stuId']." AND marks_tb.course_id =".$_POST['course'];
-              // $select_cmd2 = "SELECT * FROM user_tb WHERE student_id ='".$_POST['stuId'];
-              // var_dump($select_cmd);
               $result = $dbConn->query($select_cmd);
-              // var_dump($result);
               if ($dbConn->connect_error) {
                 throw new Exception('Connection error');
               } else {
                 if ($result->num_rows > 0) {
                   while ($row = $result->fetch_assoc()) {
-                    echo "<tr style='text-align:center;'><td><input value='".$row['student_id']."' name='stu_id'></td><td><input value='".$row['fname']."'></td><td><input value='".$row['mark']."' name='mark'></td><td><textarea name='comment'>".$row['comment']."</textarea></td></tr>";
+                    echo "<tr style='text-align:center;'><td><input value='".$row['student_id']."' name='stu_id'></td><td><input value='".$row['fname']."_".$row['lname']."'></td><td><input value='".$row['mark']."' name='mark'></td><td><textarea name='comment'>".$row['comment']."</textarea></td></tr>";
                   }
                 } else {
                   echo "<p style='color:red;'>Something went wrong</p>";
@@ -87,11 +83,33 @@
       </form>
     </table>
     <?php
+      if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['show']) {
+        try {
+          $dbConn = connect_to_database();
+          $select_cmd = "SELECT * FROM marks_tb INNER JOIN users_tb ON users_tb.user_id = marks_tb.student_id";
+          $result = $dbConn->query($select_cmd);
+          if ($dbConn->connect_error) {
+            throw new Exception('Connection error');
+          } else {
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                echo "<table><tr><th>Student Name</th><th>Student ID</th><th>Course ID</th><th>Marks</th><th>Comment</th></tr>";
+                echo "<tr><td>".$row['fname'].$row['lname']."</td><td>".$row['student_id']."</td><td>".$row['course_id']."</td><td>".$row['mark']."</td><td>".$row['comment']."</td></tr>";
+                echo "</table>";
+              }
+            } else {
+              echo "<p style='color:red;'>No data</p>";
+            }
+          }
+          $dbConn->close();  
+        } catch (Exception $ex) {
+          echo $ex->getMessage();
+        }
+      }
+
       if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['save']) {
         try {
           $dbConn = connect_to_database();
-          // $select_cmd = "SELECT * FROM marks_tb WHERE student_id ='".$_POST['stuId']."AND course_id =".$_POST['course']."'";
-          // $result = $dbConn->query($select_cmd);
           if ($dbConn->connect_error) {
             throw new Exception('Connection error');
           } else {
