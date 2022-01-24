@@ -1,5 +1,6 @@
 <?php
     include('config.php');
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,6 @@
 <header>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>" class="main-header">
         <h1>Login</h1>
-        <hr />
         <h3>Welcome to Education </h3>
         <p><input type="text" placeholder="UserId" name="userId"></p>
         <p><input type="password" placeholder="Password" name="pass"></p>
@@ -54,19 +54,20 @@
                 $result = $dbCon->query($select_cmd);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+                        // $_SESSION['userId'] = $row['user_id'];
                         echo $row['fname']." is logged in";
                         header("Location: dashboard.php");
                         exit();
                     }
                 }
-                // $userType = $row['user_type'];
-                // if ($userType == 'admin') {
-                //     echo "admin";
-                // } elseif ($userType == 'teacher') {
-                //     echo "teacher";
-                // } else {
-                //     echo "student";
-                // }
+                $userType = $row['user_type'];
+                if ($userType == 'admin') {
+                    echo "admin";
+                } elseif ($userType == 'teacher') {
+                    echo "teacher";
+                } else {
+                    echo "student";
+                }
 
             } else {
                 echo "<p style='color:red;'>User ID or password is wrong</p>";
