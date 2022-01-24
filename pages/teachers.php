@@ -49,12 +49,12 @@
       <!-- <input type="submit" value="See all the students" name="show"></input> -->
     </form>
     <table style="width:100%">
-      <tr>
+      <!-- <tr>
         <th>Student ID</th>
         <th>Student Name</th>
         <th>Marks</th>
         <th>Comments</th>
-      </tr>
+      </tr> -->
       <form method="POST" action="<?php echo $_SERVER['PHP_SELF']."?add=teachers"?>">
         <?php
           if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['chose']) {
@@ -67,7 +67,9 @@
               } else {
                 if ($result->num_rows > 0) {
                   while ($row = $result->fetch_assoc()) {
+                    echo "<tr><th>Student Name</th><th>Student ID</th><th>Course ID</th><th>Marks</th><th>Comment</th></tr>";
                     echo "<tr style='text-align:center;'><td><input value='".$row['student_id']."' name='stu_id'></td><td><input value='".$row['fname']."_".$row['lname']."'></td><td><input value='".$row['mark']."' name='mark'></td><td><textarea name='comment'>".$row['comment']."</textarea></td></tr>";
+                    // echo "</table>";
                   }
                 } else {
                   echo "<p style='color:red;'>Something went wrong</p>";
@@ -83,7 +85,7 @@
       </form>
     </table>
     <?php
-      if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['show']) {
+      if ($_GET['add'] == 'teachers') {
         try {
           $dbConn = connect_to_database();
           $select_cmd = "SELECT * FROM marks_tb INNER JOIN users_tb ON users_tb.user_id = marks_tb.student_id";
