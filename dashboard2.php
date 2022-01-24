@@ -1,3 +1,7 @@
+<?php
+    include "./config.php";
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +9,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-
-    <!-----===== CSS =====----->
-    <link rel="stylesheet" href="./stylesheet/style.css">
-
-    <!-----===== Boxicons CSS =====----->
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        <?php
+            include('./stylesheet/style.css');
+        ?>
+    </style>
+    <!-- Box-icons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
     <nav class="sidebar close">
@@ -27,46 +32,46 @@
 
             </div>
 
-            <i class='bx bx-chevron-right toggle'></i>
+            <i class="bx bx-chevron-right toggle"></i>
         </header>
         
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="">
-                            <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home</span>
+                        <a href="<?php page_handling("register_admin")?>">
+                            <i class="bx bx-home-alt icon"></i>
+                            <span class="text nav-text">Register for Admin</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
-                            <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Teachers</span>
+                        <a href="<?php page_handling("edit_admin")?>">
+                            <i class="bx bx-bar-chart-alt-2 icon"></i>
+                            <span class="text nav-text">Edit user info(Admin)</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
-                            <i class='bx bx-pie-chart-alt icon'></i>
-                            <span class="text nav-text">Students</span>
+                        <a href="<?php page_handling("edit_course_admin")?>">
+                            <i class="bx bx-pie-chart-alt icon"></i>
+                            <span class="text nav-text">Edit course info(Admin)</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
-                            <i class='bx bx-bell icon'></i>
-                            <span class="text nav-text">Notifications</span>
+                        <a href="<?php page_handling("teachers")?>">
+                            <i class="bx bx-bell icon"></i>
+                            <span class="text nav-text">Mark and comment(Teacher)</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
-                            <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Courses</span>
+                        <a href="<?php page_handling("students")?>">
+                            <i class="bx bx-heart icon"></i>
+                            <span class="text nav-text">Check the mark and comment(student)</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
-                            <i class='bx bx-wallet icon'></i>
-                            <span class="text nav-text">Likes</span>
+                        <a href="<?php page_handling("student_enroll")?>">
+                            <i class="bx bx-wallet icon"></i>
+                            <span class="text nav-text">Enroll for the new course(student)</span>
                         </a>
                     </li>
                 </ul>
@@ -75,14 +80,14 @@
             <div class="bottom-content">
                 <li class="">
                     <a href="#">
-                        <i class='bx bx-log-out icon'></i>
+                        <i class="bx bx-log-out icon"></i>
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
                 <li class="mode">
                     <div class="moon-sun">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
+                        <i class="bx bx-moon icon moon"></i>
+                        <i class="bx bx-sun icon sun"></i>
                     </div>
                     <span class="mode-text text">Dark Mode</span>
 
@@ -94,11 +99,17 @@
             </div>
         </div>
     </nav>
-
     <script src="./js/script.js"></script>
-
     <section class="home">
-        <div class="text">Dashboard</div>
+        <div class="content">
+            <?php
+                if(isset($_GET["add"])){
+                    include "pages/".$_GET["add"].".php";
+
+                }
+            ?>
+        </div>
     </section>
+    
 </body>
 </html>
