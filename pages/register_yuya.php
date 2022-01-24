@@ -126,8 +126,9 @@
                     }
                     else{
                         //need to change
-                        if(isset($_FILES["pics"]["name"])){
-                            $dir="./profile_pictures/".basename($_FILES["pics"]["name"]);
+                        $dir="";
+                        if(!empty($_FILES["pics"]["name"])){
+                            $dir="./images/".basename($_FILES["pics"]["name"]);
                             upload_pics($_FILES["pics"]["tmp_name"],$dir);
                         }
                        
