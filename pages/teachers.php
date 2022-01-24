@@ -63,7 +63,7 @@
               } else {
                 if ($result->num_rows > 0) {
                   while ($row = $result->fetch_assoc()) {
-                    echo "<tr style='text-align:center;'><td><input value='".$row['student_id']."'></td><td><input value='".$row['fname']."'></td><td><input value='".$row['mark']."' name='mark'></td><td><textarea>".$row['comment']."</textarea></td></tr>";
+                    echo "<tr style='text-align:center;'><td><input value='".$row['student_id']."'></td><td><input value='".$row['fname']."'></td><td><input value='".$row['mark']."' name='mark'></td><td><textarea name='comment'>".$row['comment']."</textarea></td></tr>";
                   }
                 } else {
                   echo "<p style='color:red;'>Something went wrong</p>";
@@ -80,7 +80,25 @@
     </table>
     <?php
       if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['save']) {
-        echo "test";
+        try {
+          $dbConn = connect_to_database();
+          $select_cmd = "SELECT * FROM marks_tb WHERE student_id ='".$_POST['stuId']."AND course_id =".$_POST['course']."'";
+          $result = $dbConn->query($select_cmd);
+          if ($dbConn->connect_error) {
+            throw new Exception('Connection error');
+          } else {
+            $insert_cmd = "UPDATE marks_tb SET mark='100' comment='good' WHERE student_id='111'";
+            if ($dbConn->query($insert_cmd)) {
+              echo "<p style='color:green;'>Successfully saved</p>";
+            } else {
+              echo "<p style='color:red;'>Something went wrong</p>";
+            }
+          }
+          $dbConn->close();  
+        } catch (Exception $ex) {
+          echo $ex->getMessage();
+        }
+
       }
     ?>
 </body>
