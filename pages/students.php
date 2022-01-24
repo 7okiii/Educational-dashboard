@@ -1,3 +1,4 @@
+
 <div>
     <h3>Check Grade</h3>
         <form action="<?php echo $_SERVER['PHP_SELF']."students"?>">
@@ -17,6 +18,5 @@
                 <th>mark</th>
             </tr>
         </table>
-
 
     </div>

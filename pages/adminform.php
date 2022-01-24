@@ -54,7 +54,7 @@ include "./config.php";
                         <input type="password" class="form-control" name="Password" id="Password" required>
                     </div>
                     <div class="mb-2">
-                        <bottom onclick="page_handling(this,1)" class="btn btn-primary">Next</bottom>
+                        <bottom class="btn btn-primary">Next</bottom>
                     </div>
                 </form>
             </div>

@@ -83,14 +83,14 @@
       if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['save']) {
         try {
           $dbConn = connect_to_database();
-          $select_cmd = "SELECT * FROM marks_tb WHERE student_id ='".$_POST['stuId']."AND course_id =".$_POST['course']."'";
-          $result = $dbConn->query($select_cmd);
+          // $select_cmd = "SELECT * FROM marks_tb WHERE student_id ='".$_POST['stuId']."AND course_id =".$_POST['course']."'";
+          // $result = $dbConn->query($select_cmd);
           if ($dbConn->connect_error) {
             throw new Exception('Connection error');
           } else {
-            $insert_cmd = "UPDATE marks_tb SET mark='".$_POST['mark']."' WHERE student_id='".$_SESSION['stuId']."'";
-            $insert_cmd = "UPDATE marks_tb SET comment='".$_POST['comment']."' WHERE student_id='111'";
-            if ($dbConn->query($insert_cmd)) {
+            $insert_cmd = "UPDATE marks_tb SET mark='".$_POST['mark']."' WHERE student_id='111'";
+            $insert_cmd2 = "UPDATE marks_tb SET comment='".$_POST['comment']."' WHERE student_id='111'";
+            if ($dbConn->query($insert_cmd) && $dbConn->query($insert_cmd2)) {
               echo "<p style='color:green;'>Successfully saved</p>";
             } else {
               echo "<p style='color:red;'>Something went wrong</p>";

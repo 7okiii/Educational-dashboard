@@ -1,6 +1,4 @@
 <!--you need add enroll_tb in db -->
-
-
 <div>
     <h3>Classes</h3>
     <table>
@@ -53,12 +51,13 @@
 </div>
 <?php
     if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $total=0;
         echo "session".$_SESSION["userid"];
         $con=connect_to_database();
         if($con->connect_error){
             die("Connection failed");
         }
-        $select="SELECT * FROM enroll_tb WHERE course_id='".$_POST["courseid"]."'";
+        $select="SELECT * FROM enroll_tb WHERE course_id='".$_POST["courseid"]."' AND student_id='".$_SESSION["userid"]."'";
         $result=$con->query($select);
         if($result->num_rows>0){
             echo "<p>Already registered</>";
@@ -76,8 +75,10 @@
             echo "<table><tr><td>Course ID</td><td>Price</td></tr>";
             while($row=$result->fetch_assoc()){
                 echo "<tr><td>".$row["course_id"]."</td><td>".$row["price"]."</td></tr>";
+                $total+=intval($row["price"]);
             }
             echo "</table>";
+            echo "<input type='text' disabled value='".$total."'>$";
         }
         $con->close();
     }
@@ -89,27 +90,3 @@
 <!--you need add enroll_tb in db -->
 
 
-<div>
-    <h2>Classes you are taking</h2>
-    <?php
-        $con=connect_to_database();
-        if($con->connect_error){
-            die("Connection failed");
-        }
-        $select="SELECT * FROM enroll_tb WHERE student_id='".$_SESSION["userid"]."'";
-        $result=$con->query($select);
-        if($result->num_rows>0){
-            $total=0;
-            echo "<table><tr><td>Course ID</td><td>Price</td></tr>";
-            while($row=$result->fetch_assoc()){
-                echo "<tr><td>".$row["course_id"]."</td><td>".$row["price"]."</td></tr>";
-                $total+=intval($row["price"]);
-            }
-        }
-        echo " </table><br>";
-        echo "<input type='text' disabled value='".$total."'>$";
-        $con->close();
-
-    ?>
-   
-</div>
