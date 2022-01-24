@@ -1,6 +1,7 @@
 <?php
     include "./config.php";
     session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,11 @@
         <script src="./js/jquery.js"></script>
 
         <title>Dashboard</title>
+        <style>
+            <?php
+                include('./stylesheet/edit_admin.css');
+            ?>
+        </style>   
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -23,7 +29,7 @@
                 <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("register_admin")?>">Register for Admin page</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("edit_admin")?>">Edit user info for Admin page</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("edit_admin[German]")?>">Edit user info for Admin page</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("edit_course_admin")?>">Edit course info for Admin page</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("teachers")?>">Mark for Teachers page</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("students")?>">Check grade for Student page</a>
@@ -59,15 +65,12 @@
                     </div>
                 </nav>
                 <!-- Page content-->
-                <div>
-                    <h1>Contents</h1>
-                    <div>
-                        <?php
-                            if(isset($_GET["add"])){
-                                include "pages/".$_GET["add"].".php";
-
-                            }
-                        ?>
+                <div><br>
+                    <?php
+                        if(isset($_GET["add"])){
+                            include "pages/".$_GET["add"].".php";
+                        }
+                    ?>
                     </div>
                 </div>
             </div>

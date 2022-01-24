@@ -10,6 +10,7 @@
             include('../stylesheet/test2.css');
         ?>
     </style>
+
 </head>
 <body>
 <?php
@@ -73,7 +74,8 @@
         // //     $inputvalue=0;
         // // }
         // ?>
-        
+        <section class="registration-form">
+            <h1>Edit</h1>
         <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]."?add=edit_admin"?>" enctype="multipart/form-data"> 
                     <div>
                         <div>
@@ -144,5 +146,6 @@
                 
                 <input id="submiting" type="submit" name="edit" value="Edit">
         </form>
+        </section>
 </body>
 </html>

@@ -1,3 +1,50 @@
-form {
-    background-color: red;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+   
 }
+body{
+    background-color: cornsilk ;
+}
+.registration-form{
+    background-color: rgb(124, 165, 241);
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 960px;
+}
+
+.registration-form h1{
+    font-size: 40px;
+    color: #E74C3C ;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 40px 0px;
+}
+
+.registration-form p{
+    font-size: 20px;
+    margin: 15px 0px;
+}
+
+.registration-form input{
+    font-size: 16px;
+    padding:15px 10px;
+    width: 100%;
+    border:0px;
+    border-radius: 5px;
+}
+
+.registration-form button{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0px;
+    padding: 10px 15px;
+    width: 50%;
+    border: 0px;
+    border-radius:5px;
+    background-color:#fff;
+}
+
