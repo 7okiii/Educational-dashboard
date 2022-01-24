@@ -51,6 +51,13 @@
                         </a>
                     </li>
                     <li class="nav-link">
+                        <a href="<?php page_handling("edit_admin_form")?>">
+                            <i class="bx bx-bar-chart-alt-2 icon"></i>
+                            <span class="text nav-text">Edit admin(Admin)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
                         <a href="<?php page_handling("edit_course_admin")?>">
                             <i class="bx bx-pie-chart-alt icon"></i>
                             <span class="text nav-text">Edit course info(Admin)</span>

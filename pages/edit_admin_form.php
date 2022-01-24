@@ -7,7 +7,7 @@
     <title>Document</title>
     <style>
         <?php
-            include('../stylesheet/test2.css');
+            include('./stylesheet/test2.css');
         ?>
     </style>
 
