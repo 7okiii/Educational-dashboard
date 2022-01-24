@@ -1,5 +1,6 @@
 <?php
   include('../config.php');
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +41,7 @@
       <input type="text" id="course" name="stuId"><br>
       <label for="fname">Course ID</label><br>
       <input type="text" name="course"><br>
-      <input type="submit" value="chose" name="chose">Chose</input>
+      <input type="submit" value="chose" name="chose"></input>
     </form>
     <table style="width:100%">
       <tr>
@@ -87,7 +88,8 @@
           if ($dbConn->connect_error) {
             throw new Exception('Connection error');
           } else {
-            $insert_cmd = "UPDATE marks_tb SET mark='100' comment='good' WHERE student_id='111'";
+            $insert_cmd = "UPDATE marks_tb SET mark='".$_POST['mark']."' WHERE student_id='".$_SESSION['stuId']."'";
+            $insert_cmd = "UPDATE marks_tb SET comment='".$_POST['comment']."' WHERE student_id='111'";
             if ($dbConn->query($insert_cmd)) {
               echo "<p style='color:green;'>Successfully saved</p>";
             } else {
