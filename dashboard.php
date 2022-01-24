@@ -22,8 +22,9 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("register_yuya")?>">Register for Admin page</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("edit_admin")?>">Edit for Admin page</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("register_admin")?>">Register for Admin page</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("edit_admin")?>">Edit user info for Admin page</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("edit_course_admin")?>">Edit course info for Admin page</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("maxmin")?>">Max and Min for Admin page</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("teachers")?>">Mark for Teachers page</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("students")?>">Check grade for Student page</a>

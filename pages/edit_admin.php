@@ -84,7 +84,7 @@
     <?php
         if(isset($_GET["form"])){
              if(!empty($_GET["form"])){
-                 include "pages/edit.admin.form.php";
+                 include "pages/edit_admin_form.php";
              }    
         }   
        
