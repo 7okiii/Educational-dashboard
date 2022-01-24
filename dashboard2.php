@@ -1,6 +1,10 @@
 <?php
     include "./config.php";
     session_start();
+    if(isset($_GET["add"]) && $_GET["add"]=="logout"){
+        header("location:login.php");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +90,7 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                    <a href="<?php page_handling("logout")?>">
                         <i class="bx bx-log-out icon"></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -112,7 +116,6 @@
             <?php
                 if(isset($_GET["add"])){
                     include "pages/".$_GET["add"].".php";
-
                 }
             ?>
         </div>

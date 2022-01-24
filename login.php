@@ -56,24 +56,26 @@
                     while ($row = $result->fetch_assoc()) {
                         $userid=$row["user_id"];
                         echo $row['fname']." is logged in";
+                        $userType = $row['user_type'];
                     }
                     $_SESSION["userid"]=$userid;
-                    header("Location: dashboard.php");
+                    if ($userType == 'admin') {
+                        echo "admin";
+                    } elseif ($userType == 'teacher') {
+                        echo "teacher";
+                    } else {
+                        echo "student";
+                    }
+                    header("Location: dashboard2.php");
                     exit();
                 }
-                $userType = $row['user_type'];
-                if ($userType == 'admin') {
-                    echo "admin";
-                } elseif ($userType == 'teacher') {
-                    echo "teacher";
-                } else {
-                    echo "student";
-                }
-
             } else {
                 echo "<p style='color:red;'>User ID or password is wrong</p>";
             }
         }
+    }
+    if($_SERVER["REQUEST_METHOD"]=="GET"){
+        
     }
 ?>
 </body>
