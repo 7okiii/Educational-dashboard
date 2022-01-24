@@ -1,14 +1,27 @@
-<form method="POST" action="<?php echo $_SERVER["PHP_SELF"]."?add=edit_admin"?>">
-    <h3>Make Table</h3>
-    User type: <select name="usertype">
-        <option selected></option>
-        <option value="student">Student</option>
-        <option value="teacher">Teacher</option>
-    </select>
-    <input type="submit" name="user" value="Select">
-</form>
-
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        <?php
+            include('./stylesheet/edit_admin.css');
+        ?>
+    </style>
+</head>
+<body>
+    <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]."?add=edit_admin"?>">
+        <h3>Make Table</h3>
+        User type: <select name="usertype">
+            <option selected></option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+        <input type="submit" name="user" value="Select">
+    </form>
+    <?php
     if($_SERVER["REQUEST_METHOD"]=="GET"){
         if(isset($_GET["form"])){
             $con=connect_to_database();
@@ -90,3 +103,6 @@
        
     ?>
 </div>
+
+</body>
+</html>
