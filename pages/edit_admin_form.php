@@ -10,7 +10,6 @@
             include('../stylesheet/test2.css');
         ?>
     </style>
-
 </head>
 <body>
 <?php
