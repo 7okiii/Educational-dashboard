@@ -64,11 +64,11 @@
         </div><br>
         <div>
             <label for="min">Minimum Number:</label>
-            <input type="number" name="min" required>
+            <input type="number" name="min" required min=0>
         </div><br>
         <div>
             <label for="max">Maximum Number:</label>
-            <input type="number" name="max" required>
+            <input type="number" name="max" required min=0>
         </div><br>
         <div>
             <label for="teacherid">Teacher ID:</label>
@@ -114,7 +114,7 @@
         }
         $insert="INSERT INTO course_tb (course_name,min_cap,max_cap,teacher_id,price) VALUES ('".$_POST["coursename"]."','".$_POST["min"]."','".$_POST["max"]."','".$_POST["teacherid"]."','".$_POST["price"]."')";
         $result=$con->query($insert);
-        echo "<p>".$_POST["coursename"]." is set</P>";
+        echo "<p style='text-align:center; color:red;'>Class: ".$_POST["coursename"]." is set</P>";
         $con->close();
     }
 ?>
