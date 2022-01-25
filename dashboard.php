@@ -1,22 +1,22 @@
 <?php
     include ('./config.php');
     session_start();
-    // if($_SERVER["REQUEST_METHOD"]="GET"){
-    //     if(!isset($_SESSION["userid"])){
-    //         $_SESSION["logout"]=1;
-    //         header("location:login.php");
-    //         exit();
-    //     }
+    if($_SERVER["REQUEST_METHOD"]="GET"){
+        if(!isset($_SESSION["userid"])){
+            $_SESSION["logout"]=1;
+            header("location:login.php");
+            exit();
+        }
 
-    //     if(isset($_GET["add"])){
-    //         if($_GET["add"]=="logout"){
-    //             $_SESSION["logout"]=1;
-    //             header("location:login.php");
-    //             exit();
-    //         }
+        if(isset($_GET["add"])){
+            if($_GET["add"]=="logout"){
+                $_SESSION["logout"]=1;
+                header("location:login.php");
+                exit();
+            }
            
-    //     }
-    // }
+        }
+    }
     
 ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@
             include('./stylesheet/dashboard.css'); // 0. dashboard.php
             include('./stylesheet/register_yuya.css'); // 1. register.admin.php
             include('./stylesheet/edit_user_admin.css'); // 2. edit_user_admin.php
-            include('./stylesheet/edit_admin_form.css'); // 3. edit_admin_form2.php
+            include('./stylesheet/edit_admin_form.css'); // 3. edit_admin_form.php
             // edit_course_admin.php has internal css code // 4
             include('./stylesheet/mark_teacher.css'); // 5.  marks_teacher.php
             // ★★★★★ marks_student.php => make CSS later ★★★★★ // 6
@@ -71,7 +71,7 @@
                     <li class="nav-link" 
                         <?php 
                             if($_SESSION['name'] != 0){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("register_admin")?>">
@@ -83,7 +83,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 0){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("edit_user_admin")?>">
@@ -95,7 +95,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 0){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("edit_course_admin")?>">
@@ -107,7 +107,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 1){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("marks_teacher")?>">
@@ -119,7 +119,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 2){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("marks_student")?>">
@@ -131,7 +131,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 2){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("student_enroll")?>">
