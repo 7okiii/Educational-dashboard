@@ -1,22 +1,22 @@
 <?php
-    include ('./config.php');
+    include "./config.php";
     session_start();
-    // if($_SERVER["REQUEST_METHOD"]="GET"){
-    //     if(!isset($_SESSION["userid"])){
-    //         $_SESSION["logout"]=1;
-    //         header("location:login.php");
-    //         exit();
-    //     }
+    if($_SERVER["REQUEST_METHOD"]="GET"){
+        if(!isset($_SESSION["userid"])){
+            $_SESSION["logout"]=1;
+            header("location:login.php");
+            exit();
+        }
 
-    //     if(isset($_GET["add"])){
-    //         if($_GET["add"]=="logout"){
-    //             $_SESSION["logout"]=1;
-    //             header("location:login.php");
-    //             exit();
-    //         }
+        if(isset($_GET["add"])){
+            if($_GET["add"]=="logout"){
+                $_SESSION["logout"]=1;
+                header("location:login.php");
+                exit();
+            }
            
-    //     }
-    // }
+        }
+    }
     
 ?>
 <!DOCTYPE html>
@@ -29,14 +29,9 @@
     <title>Dashboard</title>
     <style>
         <?php
-            include('./stylesheet/dashboard.css'); // 0. dashboard.php
-            include('./stylesheet/register_yuya.css'); // 1. register.admin.php
-            include('./stylesheet/edit_user_admin.css'); // 2. edit_user_admin.php
-            include('./stylesheet/edit_admin_form.css'); // 3. edit_admin_form2.php
-            // edit_course_admin.php has internal css code // 4
-            include('./stylesheet/mark_teacher.css'); // 5.  marks_teacher.php
-            // ★★★★★ marks_student.php => make CSS later ★★★★★ // 6
-            // student_enroll.php // 7
+            include('./stylesheet/style4.css'); // dashboard2.php
+            include('./stylesheet/edit_admin.css'); //edit_admin.php
+            include('./stylesheet/test22.css');
         ?>
     </style>
 
@@ -71,7 +66,7 @@
                     <li class="nav-link" 
                         <?php 
                             if($_SESSION['name'] != 0){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("register_admin")?>">
@@ -83,10 +78,10 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 0){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
-                        <a href="<?php page_handling("edit_user_admin")?>">
+                        <a href="<?php page_handling("edit_admin")?>">
                             <!-- <i class="bx bx-bar-chart-alt-2 icon"></i> -->
                             <i class="fas fa-user-edit icon"></i>
                             <span class="text nav-text">Edit user info(Admin)</span>
@@ -95,7 +90,20 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 0){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
+                            }
+                        ?>>
+                        <a href="<?php page_handling("edit_admin_form2")?>">
+                            <!-- <i class="bx bx-bar-chart-alt-2 icon"></i> -->
+                            <i class="fas fa-user-edit icon"></i>
+                            <span class="text nav-text">Edit admin form(Admin)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link"
+                        <?php 
+                            if($_SESSION['name'] != 0){
+                                // echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("edit_course_admin")?>">
@@ -107,10 +115,10 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 1){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
-                        <a href="<?php page_handling("marks_teacher")?>">
+                        <a href="<?php page_handling("teachers")?>">
                             <!-- <i class="bx bx-bell icon"></i> -->
                             <i class="fas fa-graduation-cap icon"></i>
                             <span class="text nav-text">Mark and comment(Teacher)</span>
@@ -119,10 +127,10 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 2){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
-                        <a href="<?php page_handling("marks_student")?>">
+                        <a href="<?php page_handling("students")?>">
                             <!-- <i class="bx bx-heart icon"></i> -->
                             <i class="fas fa-chalkboard-teacher icon"></i>
                             <span class="text nav-text">Check the mark and comment(student)</span>
@@ -131,7 +139,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 2){
-                                echo "style='display:none;'";
+                                // echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("student_enroll")?>">
@@ -170,7 +178,7 @@
         <div class="content">
             <?php
                 if(isset($_GET["add"])){
-                    include ("pages/".$_GET["add"].".php");
+                    include "pages/".$_GET["add"].".php";
                 }
             ?>
         </div>

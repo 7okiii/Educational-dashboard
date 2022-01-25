@@ -1,6 +1,18 @@
 <?php
     include('config.php');
     session_start();
+
+    if($_SERVER["REQUEST_METHOD"]=="GET"){
+        if(isset($_SESSION["userid"])){
+            if(isset($_SESSION["logout"])){
+                session_unset();
+                session_destroy();
+            }
+            else{
+                 header("location:dashboard2.php");
+            }   
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +42,6 @@
     
 <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //
         $user_id = $_POST['userId'];
         $pass = $_POST['pass'];
         //connect with database 
@@ -40,10 +51,6 @@
         if ($dbCon->connect_error) {
             echo "<p style='color:red;'>Connection error</p>";
         } else {
-            // echo "<p style='color:green;'>Connected to the database</p>";
-            // take the data from database and check the type of users
-            // $select_cmd = "SELECT * FROM users_tb WHERE user_id='".$user_id."'";
-            // if ($user_id == $row['user_id'] && $pass)
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $salt = $row['salt'];
@@ -56,25 +63,26 @@
                     while ($row = $result->fetch_assoc()) {
                         $userid=$row["user_id"];
                         echo $row['fname']." is logged in";
+                        $userType = $row['user_type'];
                     }
                     $_SESSION["userid"]=$userid;
-                    header("Location: dashboard2.php");
+                    if ($userType == 'admin') {
+                        $_SESSION['name'] = 0;
+                    } elseif ($userType == 'teacher') {
+                        $_SESSION['name'] = 1;
+                    } else {
+                        $_SESSION['name'] = 2;
+                    }
+                }
+                    header("Location: dashboard.php");
                     exit();
-                }
-                $userType = $row['user_type'];
-                if ($userType == 'admin') {
-                    $_SESSION['name'] = 0;
-                } elseif ($userType == 'teacher') {
-                    $_SESSION['name'] = 1;
-                } else {
-                    $_SESSION['name'] = 2;
-                }
-
-            } else {
+            }
+            else{
                 echo "<p style='color:red;'>User ID or password is wrong</p>";
             }
         }
     }
+   
 ?>
 </body>
 </html>
