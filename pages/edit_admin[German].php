@@ -1,6 +1,6 @@
 
     <div class="container-form">
-        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]."?add=edit_admin[German]"?>">
+        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]."?add=edit_user_admin"?>">
             <h3>Make Table</h3>
             <p>User type: <select name="usertype" required>
                 <option selected></option>
@@ -70,7 +70,7 @@
                     echo "<table>
                     <tr><th>User ID</th><th>Email</th><th>First Name</th><th>Last Name</th><th>Date of birth</th><th>Profile Picture</th><th>Vaccine</th><th>Gender</th><th>Address</th><th>Country</th><th>Position</th><th>User type</th></tr>";
                     while($row=$result->fetch_assoc()){    
-                        echo "<tr><td><a href='".$_SERVER["PHP_SELF"]."?add=edit_admin&form=".$row["user_id"]."'>".$row["user_id"]."</a></td><td>".$row["email"]."</td><td>".$row["fname"]."</td><td>".$row["lname"]."</td><td>".$row["dob"]."</td><td>";
+                        echo "<tr><td><a href='".$_SERVER["PHP_SELF"]."?add=edit_user_admin&form=".$row["user_id"]."'>".$row["user_id"]."</a></td><td>".$row["email"]."</td><td>".$row["fname"]."</td><td>".$row["lname"]."</td><td>".$row["dob"]."</td><td>";
                         if(!empty($row["profile_pic"])){
                             echo "<img style='width:20px; height:20px;' src='".$row["profile_pic"]."'>";
                         }
@@ -87,7 +87,7 @@
     <?php
         if(isset($_GET["form"])){
              if(!empty($_GET["form"])){
-                 include "pages/edit.admin.form.php";
+                 include "pages/edit_admin_form.php";
              }    
         }   
        

@@ -23,9 +23,9 @@
     </style>
 </head>
 <body>
-<div>
-    <h2>Your grade and comment form teacher</h2>
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']."?add=students"?>">
+    <div>
+        <h2>Your grade and comment form teacher</h2>
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']."?add=marks_student"?>">
             <h3>Enter your information here</h3>
             <label for="stuId">Student ID</label>
             <input type="text" name="stuId">
@@ -60,6 +60,5 @@
             ?>
         </table>
     </div>
-  
 </body>
 </html>

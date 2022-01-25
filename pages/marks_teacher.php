@@ -9,37 +9,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    table, th, td {
-      border:1px solid black;
-      text-align: center;
-    } 
-    td {
-      height: 50px;
-    }
-    input {
-      width: 100%;
-      height: 100%;
-      text-align: center;
-    }
-    textarea {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-    }
-  </style>
-  <title>Teachers</title>
+  <title>marks_teacher</title>
 </head>
 <body>
+  <div class= "mark">
   <h3>Mark page</h3>
-    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']."?add=teachers"?>">
+    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']."?add=marks_teacher"?>"class="mark-header">
       <input type="submit" value="See all the students" name="show"></input><br>
       <label for="stuId">Student ID:</label><br>
       <input type="text" id="course" name="stuId"><br>
@@ -55,7 +30,7 @@
         <th>Marks</th>
         <th>Comments</th>
       </tr> -->
-      <form method="POST" action="<?php echo $_SERVER['PHP_SELF']."?add=teachers"?>">
+      <form method="POST" action="<?php echo $_SERVER['PHP_SELF']."?add=marks_teacher"?>">
         <?php
           if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['chose']) {
             try {
@@ -81,11 +56,16 @@
             }
           }
         ?>
-        <input type="submit" value="save" name="save">Save changes</input>
+      <div class="save">
+        <input type="submit" value="save" name="save"></input>
+        </div>
       </form>
+       
     </table>
+    </div>
+
     <?php
-      if ($_GET['add'] == 'teachers') {
+      if ($_GET['add'] == 'marks_teacher') {
         try {
           $dbConn = connect_to_database();
           $select_cmd = "SELECT * FROM marks_tb INNER JOIN users_tb ON users_tb.user_id = marks_tb.student_id";

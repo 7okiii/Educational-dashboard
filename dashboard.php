@@ -1,83 +1,180 @@
 <?php
-    include "./config.php";
+    include ('./config.php');
     session_start();
+    // if($_SERVER["REQUEST_METHOD"]="GET"){
+    //     if(!isset($_SESSION["userid"])){
+    //         $_SESSION["logout"]=1;
+    //         header("location:login.php");
+    //         exit();
+    //     }
 
+    //     if(isset($_GET["add"])){
+    //         if($_GET["add"]=="logout"){
+    //             $_SESSION["logout"]=1;
+    //             header("location:login.php");
+    //             exit();
+    //         }
+           
+    //     }
+    // }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-        <link rel="stylesheet" href="./stylesheet/test.css">
-        <!-- <link rel="stylesheet" href="./stylesheet/register_yuya.css"> -->
-        <script src="./js/jquery.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <title>Dashboard</title>
+    <style>
+        <?php
+            include('./stylesheet/dashboard.css'); // 0. dashboard.php
+            include('./stylesheet/register_yuya.css'); // 1. register.admin.php
+            include('./stylesheet/edit_user_admin.css'); // 2. edit_user_admin.php
+            include('./stylesheet/edit_admin_form.css'); // 3. edit_admin_form2.php
+            // edit_course_admin.php has internal css code // 4
+            include('./stylesheet/mark_teacher.css'); // 5.  marks_teacher.php
+            // ★★★★★ marks_student.php => make CSS later ★★★★★ // 6
+            // student_enroll.php // 7
+        ?>
+    </style>
 
-        <title>Dashboard</title>
-        <style>
-            <?php
-                include('./stylesheet/edit_admin.css');
-            ?>
-        </style>   
-    </head>
-    <body>
-        <div class="d-flex" id="wrapper">
-            <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
-                <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("register_admin")?>">Register for Admin page</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("edit_admin[German]")?>">Edit user info for Admin page</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("edit_course_admin")?>">Edit course info for Admin page</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("teachers")?>">Mark for Teachers page</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("students")?>">Check grade for Student page</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php page_handling("student_enroll")?>">Enroll for student</a>
+<script src="./js/jquery.js"></script>
 
+<title>Dashboard</title>
+    <!-- Box-icons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <!-- <img src="images/logo.png" alt="logo"> -->
+                    <i class="fas fa-user-graduate" id="top-icon"></i>
+                </span>
 
-                    
-
+                <div class="text header-text">
+                    <span class="name">Dashboard</span>
+                    <span class="profession">Web Developer</span>
                 </div>
+
             </div>
-            <!-- Page content wrapper-->
-            <div id="page-content-wrapper">
-                <!-- Top navigation-->
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="container-fluid">
-                        <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+
+            <i class="bx bx-chevron-right toggle"></i>
+        </header>
+        
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link" 
+                        <?php 
+                            if($_SESSION['name'] != 0){
+                                // echo "style='display:none;'";
+                            }
+                        ?>>
+                        <a href="<?php page_handling("register_admin")?>">
+                            <!-- <i class="bx bx-home-alt icon"></i> -->
+                            <i class="fas fa-user-circle icon"></i>
+                            <span class="text nav-text">Register for Admin</span>
+                        </a>
+                    </li>
+                    <li class="nav-link"
+                        <?php 
+                            if($_SESSION['name'] != 0){
+                                // echo "style='display:none;'";
+                            }
+                        ?>>
+                        <a href="<?php page_handling("edit_user_admin")?>">
+                            <!-- <i class="bx bx-bar-chart-alt-2 icon"></i> -->
+                            <i class="fas fa-user-edit icon"></i>
+                            <span class="text nav-text">Edit user info(Admin)</span>
+                        </a>
+                    </li>
+                    <li class="nav-link"
+                        <?php 
+                            if($_SESSION['name'] != 0){
+                                // echo "style='display:none;'";
+                            }
+                        ?>>
+                        <a href="<?php page_handling("edit_course_admin")?>">
+                            <!-- <i class="bx bx-pie-chart-alt icon"></i> -->
+                            <i class="fas fa-edit icon"></i>
+                            <span class="text nav-text">Edit course info(Admin)</span>
+                        </a>
+                    </li>
+                    <li class="nav-link"
+                        <?php 
+                            if($_SESSION['name'] != 1){
+                                // echo "style='display:none;'";
+                            }
+                        ?>>
+                        <a href="<?php page_handling("marks_teacher")?>">
+                            <!-- <i class="bx bx-bell icon"></i> -->
+                            <i class="fas fa-graduation-cap icon"></i>
+                            <span class="text nav-text">Mark and comment(Teacher)</span>
+                        </a>
+                    </li>
+                    <li class="nav-link"
+                        <?php 
+                            if($_SESSION['name'] != 2){
+                                // echo "style='display:none;'";
+                            }
+                        ?>>
+                        <a href="<?php page_handling("marks_student")?>">
+                            <!-- <i class="bx bx-heart icon"></i> -->
+                            <i class="fas fa-chalkboard-teacher icon"></i>
+                            <span class="text nav-text">Check the mark and comment(student)</span>
+                        </a>
+                    </li>
+                    <li class="nav-link"
+                        <?php 
+                            if($_SESSION['name'] != 2){
+                                // echo "style='display:none;'";
+                            }
+                        ?>>
+                        <a href="<?php page_handling("student_enroll")?>">
+                            <!-- <i class="bx bx-wallet icon"></i> -->
+                            <i class="fas fa-school icon"></i>
+                            <span class="text nav-text">Enroll for the new course(student)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="<?php page_handling("logout")?>">
+                        <i class="bx bx-log-out icon"></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+                <li class="mode">
+                    <div class="moon-sun">
+                        <i class="bx bx-moon icon moon"></i>
+                        <i class="bx bx-sun icon sun"></i>
                     </div>
-                </nav>
-                <!-- Page content-->
-                <div><br>
-                    <?php
-                        if(isset($_GET["add"])){
-                            include "pages/".$_GET["add"].".php";
-                        }
-                    ?>
+                    <span class="mode-text text">Dark Mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
                     </div>
-                </div>
+                </li>
+
             </div>
         </div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+    </nav>
+    <script src="./js/script.js"></script>
+    <section class="home">
+        <div class="content">
+            <?php
+                if(isset($_GET["add"])){
+                    include ("pages/".$_GET["add"].".php");
+                }
+            ?>
+        </div>
+    </section>
+    
+</body>
 </html>
