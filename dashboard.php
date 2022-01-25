@@ -1,6 +1,7 @@
 <?php
     include ('./config.php');
     session_start();
+    // ★★★★★　tell Milad later ★★★★★
     // if($_SERVER["REQUEST_METHOD"]="GET"){
     //     if(!isset($_SESSION["userid"])){
     //         $_SESSION["logout"]=1;
