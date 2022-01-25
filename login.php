@@ -9,7 +9,7 @@
                 session_destroy();
             }
             else{
-                 header("location:dashboard2.php");
+                 header("location:dashboard.php");
             }   
         }
     }
