@@ -72,7 +72,7 @@
                     <li class="nav-link" 
                         <?php 
                             if($_SESSION['name'] != 0){
-                                // echo "style='display:none;'";
+                                echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("register_admin")?>">
@@ -84,7 +84,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 0){
-                                // echo "style='display:none;'";
+                                echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("edit_user_admin")?>">
@@ -96,7 +96,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 0){
-                                // echo "style='display:none;'";
+                                echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("edit_course_admin")?>">
@@ -108,7 +108,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 1){
-                                // echo "style='display:none;'";
+                                echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("marks_teacher")?>">
@@ -120,7 +120,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 2){
-                                // echo "style='display:none;'";
+                                echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("marks_student")?>">
@@ -132,7 +132,7 @@
                     <li class="nav-link"
                         <?php 
                             if($_SESSION['name'] != 2){
-                                // echo "style='display:none;'";
+                                echo "style='display:none;'";
                             }
                         ?>>
                         <a href="<?php page_handling("student_enroll")?>">
