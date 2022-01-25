@@ -64,14 +64,15 @@
             echo "<p style='text-align:center;'>Already registered</p>";
         }
         else{
-            $select="SELECT price FROM course_tb WHERE course_id='".$_POST["courseid"]."'";
+            $select="SELECT * FROM course_tb WHERE course_id='".$_POST["courseid"]."'";
             $result=$con->query($select);
             if($result->num_rows>0){
                 while($row=$result->fetch_assoc()){
                     $price=$row["price"];
+                    $teacherId=$row['teacher_id'];
                 }
             }
-            $insert="INSERT INTO enroll_tb (course_id,student_id,price) VALUES ('".$_POST["courseid"]."','".$_SESSION["userid"]."','".$price."')";
+            $insert="INSERT INTO enroll_tb (course_id,teacher_id,student_id,price) VALUES ('".$_POST["courseid"]."','".$teacherId."','".$_SESSION["userid"]."','".$price."')";
             $result=$con->query($insert);
         }
         $select="SELECT * FROM enroll_tb WHERE student_id='".$_SESSION["userid"]."'";

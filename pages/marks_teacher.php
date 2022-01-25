@@ -35,16 +35,17 @@
           if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['chose']) {
             try {
               $dbConn = connect_to_database();
-              $select_cmd = "SELECT * FROM course_tb INNER JOIN users_tb ON users_tb.user_id = marks_tb.student_id WHERE marks_tb.student_id =".$_POST['stuId']." AND marks_tb.course_id =".$_POST['course'];
+              $select_cmd = "SELECT * FROM enroll_tb INNER JOIN users_tb ON enroll_tb.student_id = users_tb.user_id  WHERE enroll_tb.student_id ='".$_POST['stuId']."' AND enroll_tb.course_id ='".$_POST['course']."'";
+              // $select_cmd = "SELECT * FROM enroll_tb WHERE student_id =".$_POST['stuId']." course_id =".$_POST['course']."'";
               $result = $dbConn->query($select_cmd);
               if ($dbConn->connect_error) {
                 throw new Exception('Connection error');
               } else {
                 if ($result->num_rows > 0) {
                   while ($row = $result->fetch_assoc()) {
-                    echo "<tr><th>Student Name</th><th>Student ID</th><th>Course ID</th><th>Marks</th><th>Comment</th></tr>";
-                    echo "<tr style='text-align:center;'><td><input value='".$row['student_id']."' name='stu_id'></td><td><input value='".$row['teacher_id']."'></td><td><input value='".$row['course_id']."' name='course_id'></td><input value='".$row['mark']."' name='mark'><td><textarea name='comment'>".$row['comment']."</textarea></td></tr>";
-                    // echo "</table>";
+                    echo "<tr><th>Student Name</th><th>Student ID</th><th>Course ID</th><th>Teacher ID</th><th>Mark</th><th>Comment</th></tr>";
+                    echo "<tr style='text-align:center;'><td>".$row['fname'].' '.$row['lname']."</td><td><input value='".$row['student_id']."' name='stu_id'></td><td><input value='".$row['course_id']."' name='course_id'></td><td><input value='".$row['teacher_id']."' name='teacher_id'></td><td><input value='".$row['mark']."' name='mark'></td><td><input name='comment' value='".$row['comment']."'></td></tr>";
+                    echo "</table>";
                   }
                 } else {
                   echo "<p style='color:red;'>Something went wrong</p>";
@@ -68,15 +69,15 @@
       if ($_GET['add'] == 'marks_teacher') {
         try {
           $dbConn = connect_to_database();
-          $select_cmd = "SELECT * FROM marks_tb INNER JOIN users_tb ON users_tb.user_id = marks_tb.student_id";
+          $select_cmd = "SELECT * FROM enroll_tb INNER JOIN users_tb ON users_tb.user_id = enroll_tb.teacher_id";
           $result = $dbConn->query($select_cmd);
           if ($dbConn->connect_error) {
             throw new Exception('Connection error');
           } else {
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
-                echo "<table><tr><th>Student Name</th><th>Student ID</th><th>Course ID</th><th>Marks</th><th>Comment</th></tr>";
-                echo "<tr><td>".$row['fname'].$row['lname']."</td><td>".$row['student_id']."</td><td>".$row['course_id']."</td><td>".$row['mark']."</td><td>".$row['comment']."</td></tr>";
+                echo "<table><tr><th>Student ID</th><th>Course ID</th></tr>";
+                echo "<tr><td>".$row['student_id']."</td><td>".$row['course_id']."</td></tr>";
                 echo "</table>";
               }
             } else {
@@ -94,7 +95,21 @@
           $dbConn = connect_to_database();
           if ($dbConn->connect_error) {
             throw new Exception('Connection error');
+            echo "error";
           } else {
+            $select_cmd = "SELECT student_id FROM marks_tb WHERE student_id='".$_POST['stu_id']."'";
+            $result = $dbConn->query($select_cmd);
+            if ($result->num_rows > 0) {
+              echo "bb";
+            } else {
+              $insert_cmd = "INSERT INTO marks_tb (student_id,teacher_id,course_id,mark,comment) values('".$_POST['stu_id']."','".$_POST['teacher_id']."','".$_POST['course_id']."','".$_POST['mark']."','".$_POST['comment']."');";
+              // ★★
+              if ($dbConn->query($insert_cmd) === true) {
+                // echo "aa";
+              } else {
+                echo "study more stupid";
+              }
+            }
             $update_cmd = "UPDATE marks_tb SET mark='".$_POST['mark']."' WHERE student_id='".$_POST['stu_id']."'";
             $update_cmd2 = "UPDATE marks_tb SET comment='".$_POST['comment']."' WHERE student_id='".$_POST['stu_id']."'";
             if ($dbConn->query($update_cmd) && $dbConn->query($update_cmd2)) {
